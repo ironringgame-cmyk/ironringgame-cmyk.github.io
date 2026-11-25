@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ironringgame-cmyk.github.io/sitemap.xml

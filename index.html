@@ -1,28 +1,383 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Iron Ring</title>
-<style>
-  body{margin:0;background:#0A1622;color:#E6F1FF;font-family:system-ui,-apple-system,sans-serif;
-       display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center}
-  main{padding:24px;max-width:560px}
-  h1{font-size:40px;letter-spacing:4px;margin:0 0 8px}
-  p{color:#B8D4E8;line-height:1.5}
-  a.btn{display:inline-block;margin:8px;padding:12px 22px;border-radius:10px;text-decoration:none;font-weight:600}
-  .discord{background:#5865F2;color:#fff}
-  .plain{border:1px solid #1E3A5F;color:#B8D4E8}
-  footer{margin-top:28px;font-size:13px;color:#7FA6C9}
-</style>
+<title>Iron Ring · Historical strategy game for Android</title>
+<meta name="description" content="Rule an ancient kingdom. Lead armies. Every victory earned. Iron Ring is a historical strategy game with 21 kingdoms, real-time battles, sieges and sea battles, diplomacy and succession. Fully offline. Coming to Google Play on 5 December 2026.">
+<meta name="theme-color" content="#0A1622">
+<link rel="canonical" href="https://ironringgame-cmyk.github.io/">
+
+<!-- Sharing preview (Discord, Reddit, WhatsApp, X) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Iron Ring">
+<meta property="og:title" content="Iron Ring · Rule an ancient kingdom">
+<meta property="og:description" content="Rule an ancient kingdom. Lead armies. Every victory earned. Coming to Google Play on 5 December 2026.">
+<meta property="og:url" content="https://ironringgame-cmyk.github.io/">
+<meta property="og:image" content="https://ironringgame-cmyk.github.io/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Iron Ring banner: a golden-helmeted general and a Roman soldier, both drawn as circles, beside the Iron Ring logo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ironringgame-cmyk.github.io/og-image.jpg">
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="preload" href="fonts/cormorant-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/sourcesans3-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/logo-560.webp" as="image" type="image/webp" media="(max-width: 700px)">
+<link rel="preload" href="img/logo.webp" as="image" type="image/webp" media="(min-width: 701px)">
+<link rel="stylesheet" href="css/site.css">
+<script>document.documentElement.className+=' js'</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"VideoGame","name":"Iron Ring","url":"https://ironringgame-cmyk.github.io/",
+ "description":"Historical strategy game: rule an ancient kingdom, lead armies in real-time battles, sieges and sea battles, and win through diplomacy, alliances and cunning. Fully offline.",
+ "image":"https://ironringgame-cmyk.github.io/og-image.jpg","genre":["Strategy","Historical"],"gamePlatform":"Android","operatingSystem":"Android",
+ "inLanguage":"en","publisher":{"@type":"Organization","name":"Iron Ring Games","email":"ironringgame@gmail.com"},
+ "sameAs":["https://discord.gg/QAsu7wPNT2","https://www.reddit.com/user/IronRingDev/"]}
+</script>
 </head>
 <body>
-<main>
-  <h1>IRON RING</h1>
-  <p>A historical strategy game: rule an ancient kingdom, lead armies, fight realistic battles and make alliances across ten cultures.</p>
-  <a class="btn discord" href="https://discord.gg/QAsu7wPNT2">Join our Discord</a>
-  <a class="btn plain" href="https://sites.google.com/view/ironring-privacy">Privacy policy</a>
-  <footer>Contact: ironringgame@gmail.com<br>© 2026 Iron Ring Games. All rights reserved.</footer>
+<a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+
+<!-- ============ TOP BAR ============ -->
+<header class="bar" id="bar">
+  <div class="wrap bar-in">
+    <a class="brand" href="#top" aria-label="Iron Ring, back to top">
+      <img src="img/icon-96.webp" width="36" height="36" alt="">
+      <span>Iron Ring</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#features" data-i18n="nav.features">Features</a>
+      <a href="#gallery" data-i18n="nav.gallery">Gallery</a>
+      <a href="#cultures" data-i18n="nav.cultures">Cultures</a>
+      <a href="#world" data-i18n="nav.world">The world</a>
+      <a href="#community" data-i18n="nav.community">Community</a>
+    </nav>
+    <a class="btn btn-discord btn-sm bar-discord" href="https://discord.gg/QAsu7wPNT2" target="_blank" rel="noopener">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-discord"/></svg><span data-i18n="cta.discord_short">Discord</span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav"><span class="sr" data-i18n="nav.menu">Menu</span><i></i></button>
+  </div>
+</header>
+
+<main id="main">
+<!-- ============ 1. HERO ============ -->
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <canvas class="sea" id="sea" aria-hidden="true"></canvas>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="wrap hero-in">
+    <h1 id="hero-title" class="logo-wrap" data-parallax="0.12">
+      <picture>
+        <source media="(max-width: 700px)" srcset="img/logo-560.webp" type="image/webp">
+        <source srcset="img/logo.webp" type="image/webp">
+        <img class="logo" src="img/logo.png" width="960" height="688" alt="Iron Ring" fetchpriority="high">
+      </picture>
+      <span class="glint" aria-hidden="true"></span>
+    </h1>
+    <p class="pitch" data-i18n="hero.pitch">Rule an ancient kingdom. Lead armies. Every victory earned.</p>
+    <div class="hero-cta">
+      <!-- GOOGLE PLAY: when the game is live, replace this whole <a> with the official
+           "Get it on Google Play" badge from https://play.google.com/intl/en_us/badges/
+           and point href to your Play Store page. -->
+      <a class="play-badge" id="playBadge" href="#community" aria-label="Coming to Google Play on 5 December 2026">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-calendar"/></svg>
+        <span><small data-i18n="hero.coming">Coming to Google Play</small><b data-i18n="hero.date">5 December 2026</b></span>
+      </a>
+      <a class="btn btn-discord" href="https://discord.gg/QAsu7wPNT2" target="_blank" rel="noopener">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-discord"/></svg><span data-i18n="cta.discord">Join our Discord</span></a>
+    </div>
+  </div>
+  <a class="scroll-hint" href="#march" aria-label="Scroll down"><span></span></a>
+</section>
+
+<!-- ============ 2. MARCHING TROOPS ============ -->
+<div class="march" id="march" aria-hidden="true">
+  <div class="march-track" id="marchTrack"></div>
+</div>
+
+<!-- ============ 3. TRAILER ============ -->
+<section class="section" id="trailer" aria-labelledby="trailer-title">
+  <div class="wrap narrow">
+    <header class="head rv">
+      <p class="kicker" data-i18n="trailer.kicker">Watch</p>
+      <h2 id="trailer-title" data-i18n="trailer.title">The trailer</h2>
+    </header>
+    <!-- TRAILER: when you have a YouTube video, replace the <div class="trailer-ph">…</div> below with:
+         <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="Iron Ring trailer" loading="lazy"
+                 allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+    <div class="trailer rv">
+      <div class="trailer-ph">
+        <picture>
+          <source srcset="img/trailer-poster.webp" type="image/webp">
+          <img src="img/trailer-poster.jpg" width="1280" height="576" loading="lazy" decoding="async" alt="Aeteren troops camped on a beach beside their war galleys">
+        </picture>
+        <div class="trailer-msg">
+          <span class="play-ring" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+          <b data-i18n="trailer.soon">Trailer coming soon</b>
+          <small data-i18n="trailer.follow">Join the Discord to see it first.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. GALLERY ============ -->
+<section class="section" id="gallery" aria-labelledby="gallery-title">
+  <div class="wrap">
+    <header class="head rv">
+      <p class="kicker" data-i18n="gallery.kicker">Screenshots</p>
+      <h2 id="gallery-title" data-i18n="gallery.title">See the game</h2>
+      <p class="sub" data-i18n="gallery.sub">Swipe through, tap a picture to see it full size.</p>
+    </header>
+    <div class="gal rv">
+      <ul class="gal-track" id="galTrack" aria-label="Screenshots">
+        <!-- To add a screenshot: copy one <li>, change the two file names and the alt text. -->
+        <li class="gal-item"><button class="gal-btn" data-full="img/shot-world-map-1600.webp" data-full-fallback="img/shot-world-map-1600.jpg">
+          <picture><source srcset="img/shot-world-map-800.webp" type="image/webp"><img src="img/shot-world-map-800.jpg" width="800" height="462" loading="lazy" decoding="async" alt="The world map: the kingdoms of Iron Ring in their colours across two continents and the islands, with their cities and villages" data-i18n-alt="gallery.alt.map"></picture>
+          <span class="cap" data-i18n="gallery.cap.map">World map</span></button></li>
+        <li class="gal-item"><button class="gal-btn whole" data-full="img/shot-hold-the-line-1600.webp" data-full-fallback="img/shot-hold-the-line-1600.jpg">
+          <picture><source srcset="img/shot-hold-the-line-800.webp" type="image/webp"><img src="img/shot-hold-the-line-800.jpg" width="800" height="450" loading="lazy" decoding="async" alt="A battle on open ground: grey spearmen, archers and cavalry hold their line against a red army with its general and starred elite troops" data-i18n-alt="gallery.alt.line"></picture>
+          <span class="cap" data-i18n="gallery.cap.line">Hold the line</span></button></li>
+        <li class="gal-item"><button class="gal-btn whole" data-full="img/shot-royal-looks-1600.webp" data-full-fallback="img/shot-royal-looks-1600.jpg">
+          <picture><source srcset="img/shot-royal-looks-800.webp" type="image/webp"><img src="img/shot-royal-looks-800.jpg" width="800" height="450" loading="lazy" decoding="async" alt="Royal Edition looks in a desert battle: purple troops with golden helmets and war elephants face red troops with plumed helmets, each led by a general" data-i18n-alt="gallery.alt.royal"></picture>
+          <span class="cap" data-i18n="gallery.cap.royal">Royal looks</span></button></li>
+        <li class="gal-item"><button class="gal-btn whole" data-full="img/shot-sarissapolis-1600.webp" data-full-fallback="img/shot-sarissapolis-1600.jpg">
+          <picture><source srcset="img/shot-sarissapolis-800.webp" type="image/webp"><img src="img/shot-sarissapolis-800.jpg" width="800" height="369" loading="lazy" decoding="async" alt="City close-up of Sarissapolis: the map around the city, with walls and a city charter to build and troops to recruit" data-i18n-alt="gallery.alt.city"></picture>
+          <span class="cap" data-i18n="gallery.cap.city">City close-up: Sarissapolis</span></button></li>
+        <li class="gal-item"><button class="gal-btn" data-full="img/shot-loading-carthage-1600.webp" data-full-fallback="img/shot-loading-carthage-1600.jpg">
+          <picture><source srcset="img/shot-loading-carthage-800.webp" type="image/webp"><img src="img/shot-loading-carthage-800.jpg" width="800" height="360" loading="lazy" decoding="async" alt="Loading scene: a Qart-Hadas general on horseback leads his troops across the desert" data-i18n-alt="gallery.alt.carthage"></picture>
+          <span class="cap" data-i18n="gallery.cap.carthage">Loading scene: the desert</span></button></li>
+        <li class="gal-item"><button class="gal-btn" data-full="img/shot-loading-rome-1600.webp" data-full-fallback="img/shot-loading-rome-1600.jpg">
+          <picture><source srcset="img/shot-loading-rome-800.webp" type="image/webp"><img src="img/shot-loading-rome-800.jpg" width="800" height="360" loading="lazy" decoding="async" alt="Loading scene: Aeteren troops make camp on the beach beside their war galleys" data-i18n-alt="gallery.alt.rome"></picture>
+          <span class="cap" data-i18n="gallery.cap.rome">Loading scene: the beach</span></button></li>
+      </ul>
+      <div class="gal-ctrl">
+        <button class="round" id="galPrev" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <div class="dots" id="galDots" aria-hidden="true"></div>
+        <button class="round" id="galNext" aria-label="Next screenshot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. FEATURES ============ -->
+<section class="section" id="features" aria-labelledby="features-title">
+  <div class="wrap">
+    <header class="head rv">
+      <p class="kicker" data-i18n="features.kicker">The game</p>
+      <h2 id="features-title" data-i18n="features.title">Everything a ruler needs</h2>
+    </header>
+    <ul class="cards feat">
+      <li class="card rv"><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-crown"/></svg>
+        <h3 data-i18n="f1.t">21 kingdoms, 10 ancient cultures</h3>
+        <p data-i18n="f1.d">Take the throne of one of twenty-one kingdoms, from Rome-like Aeteren and Carthage-like Qart-Hadas to the Goths of Gautagard.</p></li>
+      <li class="card rv"><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-swords"/></svg>
+        <h3 data-i18n="f2.t">Battles, sieges and sea battles</h3>
+        <p data-i18n="f2.d">Command your troops in real time. Storm city walls, starve out a fortress or fight it out ship against ship.</p></li>
+      <li class="card rv"><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-scroll"/></svg>
+        <h3 data-i18n="f3.t">Diplomacy, plots and succession</h3>
+        <p data-i18n="f3.d">Forge alliances, make enemies and uncover plots at court. When the crown passes on, the succession can change everything.</p></li>
+      <li class="card rv"><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-star"/></svg>
+        <h3 data-i18n="f4.t">Generals with character</h3>
+        <p data-i18n="f4.d">Every general has tactics, courage, cunning and charisma. Who you put in command shapes every battle.</p></li>
+      <li class="card rv"><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-scales"/></svg>
+        <h3 data-i18n="f5.t">Same rules for everyone</h3>
+        <p data-i18n="f5.d">Rival kingdoms play by exactly the same rules as you. No hidden bonuses, no shortcuts: every victory earned.</p></li>
+      <li class="card rv"><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-offline"/></svg>
+        <h3 data-i18n="f6.t">Fully offline</h3>
+        <p data-i18n="f6.d">No connection needed. Play on the train, on a plane or on the beach.</p></li>
+      <li class="card rv"><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-globe"/></svg>
+        <h3 data-i18n="f7.t">13 languages</h3>
+        <p data-i18n="f7.d">Play in your own language, with thirteen to choose from.</p></li>
+      <li class="card rv"><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-coin"/></svg>
+        <h3 data-i18n="f8.t">One optional purchase</h3>
+        <p data-i18n="f8.d">Royal Edition removes ads and unlocks extras at once; free players can earn the same extras by watching ads.</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 6. CULTURES ============ -->
+<section class="section" id="cultures" aria-labelledby="cultures-title">
+  <div class="wrap">
+    <header class="head rv">
+      <p class="kicker" data-i18n="cultures.kicker">Ten cultures</p>
+      <h2 id="cultures-title" data-i18n="cultures.title">Choose your people</h2>
+      <!-- To add a culture: copy one card below, change --c to its colour, the picture names, the name and the line. -->
+      <p class="sub" data-i18n="cultures.sub">Each culture fights, trades and rules in its own way, inspired by the peoples of the ancient world. Here they are as they look in battle.</p>
+    </header>
+    <ul class="cards cult">
+      <li class="card cul rv" style="--c:#c0262d">
+        <picture class="army"><source srcset="img/troops/rome-army.webp" type="image/webp"><img src="img/troops/rome-army.png" width="452" height="303" loading="lazy" decoding="async" alt="Aeteren army: the king with his crown in the middle, with a general, infantry, cavalry and archers" data-i18n-alt="c1.alt"></picture>
+        <h3>Aeteren</h3><p class="insp" data-i18n="c1.i">Inspired by Rome</p>
+        <p data-i18n="c1.d">Disciplined legions, straight roads and stone walls built to outlast any king.</p></li>
+      <li class="card cul rv" style="--c:#855aa3">
+        <picture class="army"><source srcset="img/troops/carthage-army.webp" type="image/webp"><img src="img/troops/carthage-army.png" width="452" height="303" loading="lazy" decoding="async" alt="Qart-Hadas army: the king with his crown in the middle, with a general, infantry, cavalry and archers" data-i18n-alt="c2.alt"></picture>
+        <h3>Qart-Hadas</h3><p class="insp" data-i18n="c2.i">Inspired by Carthage</p>
+        <p data-i18n="c2.d">Merchant princes, war elephants and a fleet that rules the sea lanes.</p></li>
+      <li class="card cul rv" style="--c:#a98c52">
+        <picture class="army"><source srcset="img/troops/greeks-army.webp" type="image/webp"><img src="img/troops/greeks-army.png" width="452" height="303" loading="lazy" decoding="async" alt="Thalassokartia army: the king with his crown in the middle, with a general, infantry, cavalry and archers" data-i18n-alt="c3.alt"></picture>
+        <h3>Thalassokartia</h3><p class="insp" data-i18n="c3.i">Inspired by Greece</p>
+        <p data-i18n="c3.d">Phalanxes of citizen soldiers, island harbours and fierce pride in their freedom.</p></li>
+      <li class="card cul rv" style="--c:#8a8a8a">
+        <picture class="army"><source srcset="img/troops/macedon-army.webp" type="image/webp"><img src="img/troops/macedon-army.png" width="452" height="303" loading="lazy" decoding="async" alt="Sarissapolis army: the king with his crown in the middle, with a general, infantry, cavalry and archers" data-i18n-alt="c4.alt"></picture>
+        <h3>Sarissapolis</h3><p class="insp" data-i18n="c4.i">Inspired by Macedon</p>
+        <p data-i18n="c4.d">Long pikes and companion cavalry that once carried a king to the edge of the world.</p></li>
+      <li class="card cul rv" style="--c:#7b6444">
+        <picture class="army"><source srcset="img/troops/epirus-army.webp" type="image/webp"><img src="img/troops/epirus-army.png" width="452" height="303" loading="lazy" decoding="async" alt="Molossis army: the king with his crown in the middle, with a general, infantry, cavalry and archers" data-i18n-alt="c5.alt"></picture>
+        <h3>Molossis</h3><p class="insp" data-i18n="c5.i">Inspired by Epirus</p>
+        <p data-i18n="c5.d">Mountain kings with war elephants and a taste for costly victories.</p></li>
+      <li class="card cul rv" style="--c:#80a050">
+        <picture class="army"><source srcset="img/troops/persia-army.webp" type="image/webp"><img src="img/troops/persia-army.png" width="452" height="303" loading="lazy" decoding="async" alt="Savarania army: the king with his crown in the middle, with a general, infantry, cavalry and archers" data-i18n-alt="c6.alt"></picture>
+        <h3>Savarania</h3><p class="insp" data-i18n="c6.i">Inspired by Persia</p>
+        <p data-i18n="c6.d">A king of kings with a guard that never shrinks and archers that darken the sky.</p></li>
+      <li class="card cul rv" style="--c:#9a9a42">
+        <picture class="army"><source srcset="img/troops/mongols-army.webp" type="image/webp"><img src="img/troops/mongols-army.png" width="452" height="303" loading="lazy" decoding="async" alt="Karakorum army: the king with his crown in the middle, with a general, infantry, cavalry and archers" data-i18n-alt="c7.alt"></picture>
+        <h3>Karakorum</h3><p class="insp" data-i18n="c7.i">Inspired by the Mongols</p>
+        <p data-i18n="c7.d">Horsemen of the endless steppe who strike before the enemy has formed its lines.</p></li>
+      <li class="card cul rv" style="--c:#5d8a3f">
+        <picture class="army"><source srcset="img/troops/chinese-army.webp" type="image/webp"><img src="img/troops/chinese-army.png" width="452" height="303" loading="lazy" decoding="async" alt="Chang’an army: the king with his crown in the middle, with a general, infantry, cavalry and archers" data-i18n-alt="c8.alt"></picture>
+        <h3>Chang’an</h3><p class="insp" data-i18n="c8.i">Inspired by China</p>
+        <p data-i18n="c8.d">Crossbow ranks, iron discipline and a court of a thousand ministers.</p></li>
+      <li class="card cul rv" style="--c:#2f7580">
+        <picture class="army"><source srcset="img/troops/goths-army.webp" type="image/webp"><img src="img/troops/goths-army.png" width="452" height="303" loading="lazy" decoding="async" alt="Vidugavua army: the king with his crown in the middle, with a general, infantry, cavalry and archers" data-i18n-alt="c9.alt"></picture>
+        <h3>Vidugavua</h3><p class="insp" data-i18n="c9.i">Inspired by the Goths</p>
+        <p data-i18n="c9.d">Hard warriors from the cold north, loyal to the chief who leads from the front.</p></li>
+      <li class="card cul rv" style="--c:#a05a35">
+        <picture class="army"><source srcset="img/troops/caliphate-army.webp" type="image/webp"><img src="img/troops/caliphate-army.png" width="452" height="303" loading="lazy" decoding="async" alt="Dar al-Khilafa army: the king with his crown in the middle, with a general, infantry, cavalry and archers" data-i18n-alt="c10.alt"></picture>
+        <h3>Dar al-Khilafa</h3><p class="insp" data-i18n="c10.i">Inspired by the Caliphate</p>
+        <p data-i18n="c10.d">Swift desert cavalry and great trading cities on the caravan roads.</p></li>
+    </ul>
+
+    <!-- Royal Edition: what it gives comes from the game's own description -->
+    <div class="royal rv" id="royal">
+      <div class="royal-head">
+        <p class="kicker" data-i18n="royal.kicker">Royal Edition</p>
+        <h3 data-i18n="royal.title">Your king, in royal style</h3>
+        <p class="royal-line" data-i18n="royal.line">One-time purchase: no ads, all 21 kingdoms unlocked, unlimited saves, replays and top speed, +30 trait points for your king in each new world, and royal looks for every army, general and king. Battles play exactly the same for everyone, and free players can earn the same extras one ad at a time.</p>
+      </div>
+      <ul class="pairs">
+        <li class="pair">
+          <figure><picture><source srcset="img/troops/rome-king.webp" type="image/webp"><img src="img/troops/rome-king.png" width="192" height="192" loading="lazy" decoding="async" alt="King of Aeteren, free look"></picture><figcaption data-i18n="royal.free">Free</figcaption></figure>
+          <figure class="r"><picture><source srcset="img/troops/rome-king-royal.webp" type="image/webp"><img src="img/troops/rome-king-royal.png" width="192" height="192" loading="lazy" decoding="async" alt="King of Aeteren, Royal Edition look"></picture><figcaption>Royal</figcaption></figure>
+          <span class="pair-name">Aeteren</span></li>
+        <li class="pair">
+          <figure><picture><source srcset="img/troops/carthage-king.webp" type="image/webp"><img src="img/troops/carthage-king.png" width="192" height="192" loading="lazy" decoding="async" alt="King of Qart-Hadas, free look"></picture><figcaption data-i18n="royal.free">Free</figcaption></figure>
+          <figure class="r"><picture><source srcset="img/troops/carthage-king-royal.webp" type="image/webp"><img src="img/troops/carthage-king-royal.png" width="192" height="192" loading="lazy" decoding="async" alt="King of Qart-Hadas, Royal Edition look"></picture><figcaption>Royal</figcaption></figure>
+          <span class="pair-name">Qart-Hadas</span></li>
+        <li class="pair">
+          <figure><picture><source srcset="img/troops/greeks-king.webp" type="image/webp"><img src="img/troops/greeks-king.png" width="192" height="192" loading="lazy" decoding="async" alt="King of Thalassokartia, free look"></picture><figcaption data-i18n="royal.free">Free</figcaption></figure>
+          <figure class="r"><picture><source srcset="img/troops/greeks-king-royal.webp" type="image/webp"><img src="img/troops/greeks-king-royal.png" width="192" height="192" loading="lazy" decoding="async" alt="King of Thalassokartia, Royal Edition look"></picture><figcaption>Royal</figcaption></figure>
+          <span class="pair-name">Thalassokartia</span></li>
+        <li class="pair">
+          <figure><picture><source srcset="img/troops/macedon-king.webp" type="image/webp"><img src="img/troops/macedon-king.png" width="192" height="192" loading="lazy" decoding="async" alt="King of Sarissapolis, free look"></picture><figcaption data-i18n="royal.free">Free</figcaption></figure>
+          <figure class="r"><picture><source srcset="img/troops/macedon-king-royal.webp" type="image/webp"><img src="img/troops/macedon-king-royal.png" width="192" height="192" loading="lazy" decoding="async" alt="King of Sarissapolis, Royal Edition look"></picture><figcaption>Royal</figcaption></figure>
+          <span class="pair-name">Sarissapolis</span></li>
+        <li class="pair">
+          <figure><picture><source srcset="img/troops/mongols-king.webp" type="image/webp"><img src="img/troops/mongols-king.png" width="192" height="192" loading="lazy" decoding="async" alt="King of Karakorum, free look"></picture><figcaption data-i18n="royal.free">Free</figcaption></figure>
+          <figure class="r"><picture><source srcset="img/troops/mongols-king-royal.webp" type="image/webp"><img src="img/troops/mongols-king-royal.png" width="192" height="192" loading="lazy" decoding="async" alt="King of Karakorum, Royal Edition look"></picture><figcaption>Royal</figcaption></figure>
+          <span class="pair-name">Karakorum</span></li>
+        <li class="pair">
+          <figure><picture><source srcset="img/troops/chinese-king.webp" type="image/webp"><img src="img/troops/chinese-king.png" width="192" height="192" loading="lazy" decoding="async" alt="King of Chang’an, free look"></picture><figcaption data-i18n="royal.free">Free</figcaption></figure>
+          <figure class="r"><picture><source srcset="img/troops/chinese-king-royal.webp" type="image/webp"><img src="img/troops/chinese-king-royal.png" width="192" height="192" loading="lazy" decoding="async" alt="King of Chang’an, Royal Edition look"></picture><figcaption>Royal</figcaption></figure>
+          <span class="pair-name">Chang’an</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. THE WORLD ============ -->
+<section class="section world" id="world" aria-labelledby="world-title">
+  <div class="wrap">
+    <header class="head rv">
+      <p class="kicker" data-i18n="world.kicker">The world</p>
+      <h2 id="world-title" data-i18n="world.title">From the Azure Gulf to the Ocean of Winds</h2>
+      <p class="sub" data-i18n="world.sub">Two great continents, scattered islands and the seas between them. Every city on the map can be taken, and every one can be lost.</p>
+    </header>
+    <figure class="map rv">
+      <div class="map-frame">
+        <picture>
+          <source media="(max-width: 700px)" srcset="img/world-map-800.webp" type="image/webp">
+          <source srcset="img/world-map.webp" type="image/webp">
+          <img class="map-img" src="img/world-map.jpg" width="1400" height="809" loading="lazy" decoding="async" alt="The Iron Ring world map: the kingdoms in their colours across two continents, with their cities, rivers and forests, and islands in the seas between" data-i18n-alt="world.alt">
+        </picture>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 8. COMMUNITY ============ -->
+<section class="section" id="community" aria-labelledby="community-title">
+  <div class="wrap">
+    <header class="head rv">
+      <p class="kicker" data-i18n="community.kicker">Community</p>
+      <h2 id="community-title" data-i18n="community.title">Join the court</h2>
+      <p class="sub" data-i18n="community.sub">News, development updates and a place to talk strategy with other players.</p>
+    </header>
+    <ul class="cards comm">
+      <li class="card rv"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#8b95ff"><use href="#i-discord"/></svg>
+        <h3>Discord</h3><p data-i18n="community.discord">Chat with the developer and other players, and hear the news first.</p>
+        <a class="btn btn-discord" href="https://discord.gg/QAsu7wPNT2" target="_blank" rel="noopener"><span data-i18n="cta.discord">Join our Discord</span></a></li>
+      <li class="card rv"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:#ff7a45"><use href="#i-reddit"/></svg>
+        <h3>Reddit</h3><p data-i18n="community.reddit">Follow development posts and screenshots.</p>
+        <a class="btn btn-line" href="https://www.reddit.com/user/IronRingDev/" target="_blank" rel="noopener">u/IronRingDev</a></li>
+      <li class="card rv"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--gold)"><use href="#i-mail"/></svg>
+        <h3 data-i18n="community.contact">Contact</h3><p data-i18n="community.mail">Questions, press or partnerships: write to us.</p>
+        <a class="btn btn-line mail" href="mailto:ironringgame@gmail.com">ironringgame@gmail.com</a></li>
+    </ul>
+  </div>
+</section>
+
 </main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a class="brand" href="#top"><img src="img/icon-96.webp" width="36" height="36" alt="" loading="lazy"><span>Iron Ring</span></a>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="https://sites.google.com/view/ironring-privacy" target="_blank" rel="noopener" data-i18n="footer.privacy">Privacy policy</a>
+      <a href="https://discord.gg/QAsu7wPNT2" target="_blank" rel="noopener">Discord</a>
+      <a href="https://www.reddit.com/user/IronRingDev/" target="_blank" rel="noopener">Reddit</a>
+      <a href="mailto:ironringgame@gmail.com" data-i18n="footer.contact">Contact</a>
+    </nav>
+    <div class="lang-pick" id="langPick" hidden></div>
+    <p class="copy-r" data-i18n="footer.copy">© 2026 Iron Ring Games. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Screenshot" hidden>
+  <button class="round lb-close" id="lbClose" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="round lb-prev" id="lbPrev" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="round lb-next" id="lbNext" aria-label="Next screenshot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- icons -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-discord" viewBox="0 0 24 24"><path fill="currentColor" d="M19.6 5.3A17 17 0 0 0 15.4 4l-.5 1.1a15.7 15.7 0 0 0-5.8 0L8.6 4a17 17 0 0 0-4.2 1.3C1.7 9.3 1 13.2 1.3 17a17 17 0 0 0 5.2 2.6l1.1-1.8a11 11 0 0 1-1.7-.8l.4-.3a12.2 12.2 0 0 0 11.4 0l.4.3c-.5.3-1.1.6-1.7.8l1.1 1.8a17 17 0 0 0 5.2-2.6c.4-4.4-.7-8.3-3.1-11.7zM8.7 14.7c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1zm6.6 0c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></symbol>
+  <symbol id="i-reddit" viewBox="0 0 24 24"><path fill="currentColor" d="M22 12.1a2.2 2.2 0 0 0-3.7-1.6 10.8 10.8 0 0 0-5.8-1.8l1-4.6 3.2.7a1.6 1.6 0 1 0 .2-.9l-3.6-.8a.5.5 0 0 0-.6.4l-1.1 5.2a10.8 10.8 0 0 0-5.9 1.8A2.2 2.2 0 1 0 3.3 14a4.3 4.3 0 0 0 0 .7c0 3.4 3.9 6.1 8.7 6.1s8.7-2.7 8.7-6.1a4.3 4.3 0 0 0 0-.7 2.2 2.2 0 0 0 1.3-2zM7.6 13.7a1.6 1.6 0 1 1 1.6 1.6 1.6 1.6 0 0 1-1.6-1.6zm8.8 4.2a5.8 5.8 0 0 1-4.4 1.4 5.8 5.8 0 0 1-4.4-1.4.4.4 0 0 1 .6-.6 5 5 0 0 0 3.8 1.1 5 5 0 0 0 3.8-1.1.4.4 0 1 1 .6.6zm-.3-2.6a1.6 1.6 0 1 1 1.6-1.6 1.6 1.6 0 0 1-1.6 1.6z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.8 6.5 12 13l8.2-6.5"/></g></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><circle cx="12" cy="15" r="1.6" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></g></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M3.5 17.5l5.5-5 4 3.5 3-2.5 4.5 4"/></g></symbol>
+  <symbol id="i-crown" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M5 23l-1.5-12 7 5.5L16 7l5.5 9.5 7-5.5L27 23z"/><path d="M6 27h20"/><circle cx="16" cy="18.5" r="1.6" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="i-swords" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5l14 14M5 5h4.5L21 16.5M5 5v4.5L16.5 21"/><path d="M27 5L13 19M27 5h-4.5L11 16.5M27 5v4.5L15.5 21" opacity=".55"/><path d="M17.5 22.5l4-4M21 24l3.5 3.5M24 21l3.5 3.5"/><path d="M14.5 22.5l-4-4M11 24l-3.5 3.5M8 21l-3.5 3.5" opacity=".55"/></g></symbol>
+  <symbol id="i-scroll" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h15a3 3 0 0 1 0 6h-2v14a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-2h12"/><path d="M9 6a3 3 0 0 0-3 3v15M12 13h6M12 17.5h6"/><circle cx="21" cy="24" r="3" fill="currentColor" stroke="none" opacity=".9"/></g></symbol>
+  <symbol id="i-star" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><circle cx="16" cy="17.5" r="9.5"/><path d="M16 3.5l1.7 3.5 3.8.5-2.8 2.7.7 3.8L16 12.2 12.6 14l.7-3.8-2.8-2.7 3.8-.5z" fill="currentColor"/></g></symbol>
+  <symbol id="i-scales" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5v22M10 27h12M6 9h20M8.5 9 4.5 18a4.5 4.5 0 0 0 8 0zM23.5 9l-4 9a4.5 4.5 0 0 0 8 0z"/></g></symbol>
+  <symbol id="i-offline" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="10" y="4" width="12" height="24" rx="2.5"/><path d="M14.5 24.5h3"/><path d="M4 4l24 24" stroke-width="2"/></g></symbol>
+  <symbol id="i-globe" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="16" cy="16" r="11"/><path d="M5 16h22M16 5c3.5 3.2 5 7 5 11s-1.5 7.8-5 11c-3.5-3.2-5-7-5-11s1.5-7.8 5-11z"/></g></symbol>
+  <symbol id="i-coin" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="16" cy="16" r="11"/><circle cx="16" cy="16" r="7" opacity=".55"/><path d="M16 12v8M13.5 14.5h5"/></g></symbol>
+</svg>
+
+<script src="js/i18n.js" defer></script>
+<script src="js/sea.js" defer></script>
+<script src="js/site.js" defer></script>
 </body>
 </html>
